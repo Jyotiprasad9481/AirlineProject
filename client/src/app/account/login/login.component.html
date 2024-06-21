@@ -1,0 +1,280 @@
+<div class="container-fluid">
+  <div class="loginPage">
+    <div class="row main-wrapper justify-content-center align-items-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg p-4 justify-content-center">
+          <h2 class="text-center fw-bold mb-3">WELCOME TO SkyMiles Airline</h2>
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="text-left"
+          >
+            <div class="form-floating my-3">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter The Email-Id"
+                formControlName="email"
+              />
+              <label>UserId</label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  loginForm.get('email')?.hasError('required') &&
+                  loginForm.get('email')?.touched
+                "
+                >Please enter your UserId</small
+              >
+            </div>
+            <div class="form-floating my-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter The Password"
+                formControlName="password"
+              />
+              <label>Password</label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  loginForm.get('password')?.hasError('required') &&
+                  loginForm.get('password')?.touched
+                "
+                >Please enter your Password</small
+              >
+            </div>
+            <button
+              class="btn btn-primary w-100"
+              [disabled]="this.loginForm.invalid"
+            >
+              Login Now
+            </button>
+          </form>
+
+          <div class="row col-md-12 m-3">
+            <button
+              type="button"
+              class="col-md-6 justify-content-center"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              SignUp
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Register User
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form
+                      [formGroup]="registerForm"
+                      (ngSubmit)="onRegister()"
+                      class="text-left"
+                    >
+                      <div class="form-floating my-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter The First Name"
+                          formControlName="firstName"
+                          required
+                        />
+                        <label>First Name</label>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm
+                              .get('firstName')
+                              ?.hasError('required') &&
+                            registerForm.get('firstName')?.touched
+                          "
+                          >Please enter Your Name</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('firstName')?.hasError('pattern')
+                          "
+                          >Accepts Alphabets, space
+                        </small>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('firstName')?.hasError('minlength')
+                          "
+                        >
+                          Minimum 2 Character</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('firstName')?.hasError('maxlength')
+                          "
+                        >
+                          Maximum 30 Character</small
+                        >
+                      </div>
+                      <div class="form-floating my-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter The Last Name"
+                          formControlName="lastName"
+                        />
+                        <label>Last Name</label>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm
+                              .get('lastName')
+                              ?.hasError('required') &&
+                            registerForm.get('lastName')?.touched
+                          "
+                          >please enter Your Name</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('lastName')?.hasError('pattern')
+                          "
+                          >Accepts Alphabets, space
+                        </small>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('lastName')?.hasError('minlength')
+                          "
+                        >
+                          Minimum 3 Character</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('lastName')?.hasError('maxlength')
+                          "
+                        >
+                          Maximum 30 Character</small
+                        >
+                      </div>
+                      <div class="form-floating my-3">
+                        <input
+                          type="email"
+                          class="form-control"
+                          placeholder="Enter The Email-Id"
+                          formControlName="email"
+                        />
+                        <label>Email-Id</label>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('email')?.hasError('required') &&
+                            registerForm.get('email')?.touched
+                          "
+                          >Please enter your Email-Id</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="registerForm.get('email')?.hasError('pattern')"
+                          >Please enter valid email-id
+                        </small>
+                      </div>
+                      <div class="form-floating my-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="Enter The Password"
+                          formControlName="password"
+                        />
+                        <label>Password</label>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm
+                              .get('password')
+                              ?.hasError('required') &&
+                            registerForm.get('password')?.touched
+                          "
+                          >Please enter your Password</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('password')?.hasError('pattern')
+                          "
+                          >Please enter Strong Password your password should
+                          content special character and number
+                        </small>
+                      </div>
+                      <div class="form-floating my-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter The Confirm Password"
+                          formControlName="cpassword"
+                        />
+                        <label>Confirm Password</label>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm
+                              .get('cpassword')
+                              ?.hasError('required') &&
+                            registerForm.get('cpassword')?.touched
+                          "
+                          >Please enter your Password</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            registerForm.get('cpassword')?.hasError('MustMatch')
+                          "
+                          >Password doesn't matched</small
+                        >
+                      </div>
+                      <button
+                        type="submit"
+                        class="btn btn-danger w-100"
+                        [disabled]="this.registerForm.invalid"
+                      >
+                        Create Account
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end col-md-6">
+              <a [routerLink]="'/admin'" class="text-decoration-none"
+                >Not SkyMiles Member ?</a
+              >
+            </div>
+          </div>
+          <div>
+            <small [ngClass]="className" class="m-3" id="error-message">{{
+              message
+            }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

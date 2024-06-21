@@ -1,0 +1,435 @@
+<section class="PersonalInfo px-3 pt-4">
+  <!--Header Section -->
+  <header class="container-fluid headerSection">
+    <div class="row col-md-12">
+      <div class="col-md-5">
+        <h3>Personal Information</h3>
+        <h6>Please provide your contact information</h6>
+      </div>
+      <div class="menu col-md-7">
+        <ul class="progressbar row justify-content-end">
+          <li class="active"><a>Personal Info</a></li>
+          <li>
+            <a>Comment</a>
+          </li>
+          <li>
+            <a>Review</a>
+          </li>
+          <li>
+            <a>Confirmation</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!--Middle Section -->
+  <form [formGroup]="feedbackForm" (ngSubmit)="redirect()" class="text-left">
+    <section class="container-fluid px-4 py-2 heading">
+      <div class="card shadow-lg p-4 justify-content-center mb-4">
+        <div class="col-md-12">
+          <p [ngClass]="hide">
+            Are You SkyMiles member?
+            <a
+              [routerLink]="'/login'"
+              routerLinkActive="active"
+              class="text-decoration-none"
+              >Login </a
+            >So We can help you faster
+            <span><hr /></span>
+          </p>
+          <p [ngClass]="show" class="text-primary">
+            Welcome {{ user?.firstName }} to SkyMiles Airline
+            <span><hr /></span>
+          </p>
+        </div>
+        <div class="text-end">
+          <h6>All fields required unless noted</h6>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-12 lh-sm">
+            <p class="">
+              Please make sure your file name is entered exactly as it appears
+              on your government issued ID
+            </p>
+            <p class="">(example: Jane Elizabeth Doe)</p>
+          </div>
+        </div>
+        <div class="col-md-12 personalDetailsForm">
+          <!-- Airline Details -->
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <select
+                class="form-control form-select"
+                id="floatingSelect"
+                aria-label="Floating label select example"
+                formControlName="airlineProgram"
+                [(ngModel)]="pinfo.airlineProgram"
+              >
+                <option>Delta Air Lines/SkyMiles</option>
+                <option selected value="1">Others</option>
+              </select>
+              <label for="floatingSelect">Airline program (Optional)</label>
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter The FFN"
+                formControlName="ffn"
+                [(ngModel)]="pinfo.ffn"
+              />
+              <label>Frequent Flyer Number (Optional)</label>
+            </div>
+          </div>
+
+          <!-- First Name , Middle Name , Last Name -->
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Your FirstName"
+                formControlName="firstName"
+                [(ngModel)]="pinfo.firstName"
+              />
+              <label
+                >First Name
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('firstName')?.hasError('required') &&
+                  feedbackForm.get('firstName')?.touched
+                "
+                >Please enter your First Name</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('firstName')?.hasError('pattern')"
+                >Accepts Alphabets, space
+              </small>
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('firstName')?.hasError('minlength')"
+              >
+                Minimum 2 Character</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('firstName')?.hasError('maxlength')"
+              >
+                Maximum 10 Character</small
+              >
+            </div>
+
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your MiddleName"
+                formControlName="midName"
+                [(ngModel)]="pinfo.midName"
+              />
+              <label>Middle Name (Optional)</label>
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your LastName"
+                formControlName="lastName"
+                [(ngModel)]="pinfo.lastName"
+              />
+              <label>Last Name <strong>*</strong></label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('lastName')?.hasError('required') &&
+                  feedbackForm.get('lastName')?.touched
+                "
+                >Please enter your Last Name</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('lastName')?.hasError('pattern')"
+                >Accepts Alphabets, space
+              </small>
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('lastName')?.hasError('minlength')"
+              >
+                Minimum 2 Character</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('lastName')?.hasError('maxlength')"
+              >
+                Maximum 10 Character</small
+              >
+            </div>
+          </div>
+          <!-- Country Code, Phone Number , Email Address -->
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <select
+                class="form-control form-select"
+                id="floatingSelect"
+                aria-label="Floating label select example"
+                [(ngModel)]="selectedCountry.id"
+                formControlName="countryPhoneCode"
+                [(ngModel)]="pinfo.countryPhoneCode"
+                (change)="country(selectedCountry.id)"
+                required
+              >
+                <!-- (change)="onSelect($event.target)" -->
+                <option value="0">Select Country code...</option>
+                <option
+                  *ngFor="let country of countries"
+                  [value]="country?.country_id"
+                >
+                  {{ country?.dial_code }}
+                </option>
+              </select>
+              <label
+                >Phone Country/Region Code
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('countryPhoneCode')?.hasError('required') &&
+                  feedbackForm.get('countryPhoneCode')?.touched
+                "
+                >Please enter your Country Code</small
+              >
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter your Phone Number"
+                formControlName="phoneNumber"
+                [(ngModel)]="pinfo.phoneNumber"
+              />
+              <label
+                >Phone Number
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('phoneNumber')?.hasError('required') &&
+                  feedbackForm.get('phoneNumber')?.touched
+                "
+                >Please enter your Phone Number</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('phoneNumber')?.hasError('pattern')"
+                >Phone Number should be 10 digit
+              </small>
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter The Email-Id"
+                formControlName="email"
+                [(ngModel)]="pinfo.email"
+              >
+              <label
+                >Email Address
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('email')?.hasError('required') &&
+                  feedbackForm.get('email')?.touched
+                "
+                >Please enter your Email Address</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('email')?.hasError('pattern')"
+                >Please enter valid email-id
+              </small>
+            </div>
+          </div>
+          <!-- Country , Address 1 , Address 2 -->
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <select
+                class="form-control form-select"
+                id="floatingSelect"
+                aria-label="Floating label select example"
+                formControlName="countryName"
+                [(ngModel)]="pinfo.countryName"
+                [(ngModel)]="selectedCountry.id"
+                (change)="country(selectedCountry.id)"
+                required
+              >
+                <option value="0">Select Country name...</option>
+                <option
+                  *ngFor="let country of countries"
+                  [value]="country?.country_id"
+                >
+                  {{ country?.country_name }}
+                </option>
+              </select>
+              <label
+                >Country/Region
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('countryName')?.hasError('required') &&
+                  feedbackForm.get('countryName')?.touched
+                "
+                >Please enter your Country Name</small
+              >
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your Address Line 1"
+                formControlName="address1"
+                [(ngModel)]="pinfo.address1"
+              />
+              <label
+                >Address Line 1
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('address1')?.hasError('required') &&
+                  feedbackForm.get('address1')?.touched
+                "
+                >Please enter your Address Line 1</small
+              >
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your Address Line 2"
+              />
+              <label>Address Line 2 (Optional)</label>
+            </div>
+          </div>
+          <!-- City , State , Postal Code -->
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your City Name"
+                formControlName="city"
+                [(ngModel)]="pinfo.city"
+              />
+              <label
+                >City
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('city')?.hasError('required') &&
+                  feedbackForm.get('city')?.touched
+                "
+                >Please enter your City Name</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('city')?.hasError('pattern')"
+                >Accepts Alphabets, space
+              </small>
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <select
+                class="form-control form-select"
+                id="floatingSelect"
+                aria-label="Floating label select example"
+                formControlName="stateName"
+                [(ngModel)]="pinfo.stateName"
+                required
+              >
+                <option value="0">Select state...</option>
+                <!-- <option *ngFor="let state of istate" [value]="state?.state_id">
+                  {{ state?.state_name }}
+                </option> -->
+                <option *ngFor="let state of istate" [value]="state?.state_id">
+                  {{ state?.state_name }}
+                </option>
+              </select>
+              <label
+                >State/Province
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('stateName')?.hasError('required') &&
+                  feedbackForm.get('stateName')?.touched
+                "
+                >Please enter your Country Name</small
+              >
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter your Postal Code"
+                formControlName="postalcode"
+                [(ngModel)]="pinfo.postalcode"
+              />
+              <label
+                >Postal Code
+                <strong>*</strong>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('postalcode')?.hasError('required') &&
+                  feedbackForm.get('postalcode')?.touched
+                "
+                >Please enter your Postal Code</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="feedbackForm.get('postalcode')?.hasError('pattern')"
+                >Accepts Only Number
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container-fluid bg-white footerStyle pt-5">
+      <div class="row justify-content-end">
+        <div class="col-md-3 text-center">
+          <button
+            type="submit"
+            class="w-100 p-2 btn btn-danger text-dark"
+            [disabled]="this.feedbackForm.invalid"
+          >
+            Continue To Comment
+          </button>
+        </div>
+
+        <div class="col-md-3 text-center">
+          <a
+            class="w-100 p-2 btn btn-light border border-3 border-primary"
+            (click)="Back()"
+            >Back</a
+          >
+        </div>
+      </div>
+    </footer>
+  </form>
+</section>

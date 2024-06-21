@@ -1,0 +1,262 @@
+<section class="PersonalInfo px-3 pt-4">
+  <!--Header Section -->
+  <header class="container-fluid headerSection">
+    <div class="row col-md-12">
+      <div class="col-md-5">
+        <h3>Leave Your Comment</h3>
+        <h6>Please provide as much detail as you can.</h6>
+      </div>
+      <div class="menu col-md-7">
+        <ul class="progressbar row justify-content-end">
+          <li class="active">
+            <a>Personal Info</a>
+          </li>
+          <li class="active">
+            <a>Comment</a>
+          </li>
+          <li>
+            <a>Review</a>
+          </li>
+          <li>
+            <a>Confirmation</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!--Middle Section -->
+  <form [formGroup]="feedbackForm">
+    <section class="container-fluid px-4 py-2 heading">
+      <div class="card shadow-lg p-4 justify-content-center mb-4 py-5">
+        <div class="row col-md-12">
+          <div class="col-md-8 commentHeader lh-2">
+            <p>
+              In order to assist you faster, please look up your flight details
+              by poroviding your Confirmation # and Ticket # , Your Full Name
+              Must Match your Ticket #. Don't have Your Confirmation # or Ticket
+              #? Check the box below to continue with partial (or no) flight
+              information
+            </p>
+          </div>
+          <div class="col-md-4 text-end">
+            <p>All fields required unless noted.</p>
+          </div>
+        </div>
+
+        <div class="col-md-12 commentSectionForm">
+          <div class="row col-md-12">
+            <div class="form-floating my-3 col-md-4">
+              <div class="text-muted">Full Name</div>
+              <div class="fullName ticketDetails">
+                {{ data.firstName + " " + data.lastName }}
+              </div>
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Your Confirmation Id"
+                formControlName="confirmationId"
+                [(ngModel)]="data.confirmationId"
+              />
+              <label class="ticketDetails"
+                >Confirmation #
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-info-circle-fill float-end"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+                  />
+                </svg>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('confirmation')?.hasError('required') &&
+                  feedbackForm.get('confirmation')?.touched
+                "
+                >Please enter your Confirmation Id</small
+              >
+            </div>
+            <div class="form-floating my-3 col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Your Ticket No"
+                formControlName="ticket"
+                [(ngModel)]="data.ticket"
+              />
+              <label class="ticketDetails"
+                >Ticket #
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-info-circle-fill float-end"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+                  />
+                </svg>
+              </label>
+              <small
+                class="text-danger"
+                *ngIf="
+                  feedbackForm.get('ticket')?.hasError('required') &&
+                  feedbackForm.get('ticket')?.touched
+                "
+                >Please enter your Ticket No</small
+              >
+            </div>
+          </div>
+          <div class="col-md-12 row justify-content-end mt-3">
+            <div class="col-md-4 checkBox">
+              <input type="checkbox" id="Ticketid" class="mx-2" /><label
+                for="Ticketid"
+                >I dont have My Confirmation # and/or Ticket #</label
+              >
+            </div>
+          </div>
+          <div class="col-md-12 row justify-content-end mt-3">
+            <div class="col-md-3 flightDetails">
+              <button type="button" class="w-100 p-4">
+                Lookup Flight Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow-lg p-4 justify-content-center mb-4">
+        <div class="CommentSectionForm">
+          <div class="col-md-12 text-end py-2">
+            <p>All fields required unless noted.</p>
+          </div>
+          <!-- TextArea Comment -->
+          <div class="col-md-12 py-4">
+            <div>
+              <label class="text-muted" for="exampleFormControlTextarea1"
+                >Please provide additional details below. (1500 character
+                limit)</label
+              >
+              <textarea
+                type="text"
+                class="w-100 textAreaComment form-control"
+                id="exampleFormControlTextarea1"
+                formControlName="additionalDetails"
+                [(ngModel)]="data.additionalDetails"
+              ></textarea>
+            </div>
+          </div>
+          <!-- File Attachment -->
+          <div class="col-md-12 filePath">
+            <div class="col-md-12 py-2">
+              <div class="row col-md-12">
+                <div class="p-0" [hidden]="isShown">
+                  <input
+                    class="col-md-2 float-start form-control"
+                    type="file"
+                    formControlName="file"
+                    #fileInput
+                    [multiple]="true"
+                    (change)="uploadFile(fileInput)"
+                    accept="image/jpg, image/jpeg, image/png, application/vnd.ms-powerpoint, application/pdf, application/msword, application/vnd.ms-excel"
+                    [ngClass]="{ 'is-invalid': exceeds }"
+                  />
+                </div>
+                <label class="col p-0 float-start" for="file">
+                  <button
+                    type="button"
+                    (click)="toggle()"
+                    id="show"
+                    [hidden]="!isShown"
+                    class="p-0"
+                  >
+                    + Add an Attachment
+                  </button>
+                </label>
+              </div>
+              <div class="row pt-3">
+                <div
+                  class="col-1 position-relative"
+                  *ngFor="let source of data.attachment; index as i"
+                >
+                  <img
+                    src="assets/image/remove.png"
+                    class="remove_image"
+                    (click)="removeOldImage(i)"
+                  />
+                  <!-- <img
+                    [src]="source"
+                    class="img-fluid w-100"
+                    (click)="OpenImageInNewTab(source)"
+                  /> -->
+                  <img
+                    [src]="sourceOfBase64Thumnail(source)"
+                    class="img-fluid w-100"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-12 pt-2"
+              [ngClass]="{ 'text-danger': exceeds }"
+              [innerHtml]="exceedsReason"
+            ></div>
+          </div>
+          <!-- Customer reply -->
+          <div class="col-md-12 py-4 customerReply">
+            <span class="col-md-12">Would you like a reply?</span>
+            <div class="row col-md-4">
+              <div class="col-md-2">
+                <input
+                  type="radio"
+                  name="likeAReply"
+                  formControlName="likeAReply"
+                  [(ngModel)]="data.likeAReply"
+                  [value]="true"
+                /><label for="likeAReply">Yes</label>
+              </div>
+              <div class="col-md-2">
+                <input
+                  type="radio"
+                  name="likeAReply"
+                  formControlName="likeAReply"
+                  [(ngModel)]="data.likeAReply"
+                  [value]="false"
+                /><label for="likeAReply">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container-fluid bg-white footerStyle pt-5">
+      <div class="row justify-content-end">
+        <div class="col-md-3 text-center">
+          <button
+            class="w-100 p-2 btn btn-danger text-dark"
+            (click)="redirect()"
+            [disabled]="this.feedbackForm.invalid || exceeds"
+          >
+            Continue To Review
+          </button>
+        </div>
+        <div class="col-md-3 text-center">
+          <a
+            class="w-100 p-2 btn btn-light border border-3 border-primary"
+            (click)="Back()"
+            >Back</a
+          >
+        </div>
+      </div>
+    </footer>
+  </form>
+</section>

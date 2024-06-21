@@ -1,0 +1,83 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "name": "USA",
+      "dial_code": "USA (1)"
+    },
+    {
+      "id": 2,
+      "name": "Germany",
+      "dial_code": "USA (23)"
+    },
+    {
+      "id": 3,
+      "name": "Austrailia",
+      "dial_code": "USA (34)"
+    }
+  ],
+  "states": [
+    {
+      "id": 1,
+      "name": "a",
+      "country_id": 1
+    },
+    {
+      "id": 2,
+      "name": "b",
+      "country_id": 1
+    },
+    {
+      "id": 3,
+      "name": "c",
+      "country_id": 2
+    },
+    {
+      "id": 4,
+      "name": "d",
+      "country_id": 2
+    },
+    {
+      "id": 5,
+      "name": "e",
+      "country_id": 3
+    },
+    {
+      "id": 6,
+      "name": "f",
+      "country_id": 3
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "i",
+      "state_id": 1
+    },
+    {
+      "id": 2,
+      "name": "ii",
+      "state_id": 1
+    },
+    {
+      "id": 3,
+      "name": "iii",
+      "state_id": 2
+    },
+    {
+      "id": 4,
+      "name": "iiii",
+      "state_id": 2
+    },
+    {
+      "id": 5,
+      "name": "e",
+      "state_id": 3
+    },
+    {
+      "id": 6,
+      "name": "f",
+      "state_id": 3
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<!-- <div class="Heading container-fluid">
+  <div class="row">
+    <div class="col-11">
+      <h3 class="content">Give Feedback or File a Complaint</h3>
+    </div>
+    <div class="col-1">
+      <h3 class="content"><button class="btn btn-dark" (click)="logout()">Logout</button></h3>
+    </div>
+  </div>
+</div> -->
+
+<div class="Heading container-fluid">
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <h3 class="content">Give Feedback or File a Complaint</h3>
+    </div>
+
+    <div class="col-md-6 row justify-content-end" [ngClass]="className">
+      <h6 class="col-md-4 pt-2 text-white text-end">
+        Hello, {{ user?.firstName }}
+      </h6>
+      <button
+        id="logout"
+        class="col-md-2 btn btn-danger ms-3 logout-btn"
+        (click)="logout()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+*{
+    font-family: sans-serif;
+    margin: 0;
+}
+/* Header Part */
+.PersonalInfo {
+    padding: 10px 0px 0px 0px;
+    /* background-color: rgb(250 250 250); */
+    width: 100%;
+}
+.PersonalInfo a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #302f83;
+}
+.PersonalInfo span{
+    color: #302f83;
+}
+header h3{
+    color: #302f83;
+}
+header h3,h6 {
+    line-height: 35px;
+    color: #302f83;
+}
+.PersonalInfo .heading{
+    cursor: pointer;
+}
+
+.PersonalInfo .commentHeader{
+    font-size: 16px;
+    word-spacing: 3px;
+    padding-right: 15%;
+}
+
+/* Progress Bar */
+.progressbar{
+counter-reset: step;
+}
+.progressbar li{
+    list-style-type: none;
+    float: left;
+    width: 25%;
+    text-align: center;
+    position: relative;
+}
+.progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #302f83;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+
+    
+}
+.progressbar li:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #302f83;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+.progressbar li:first-child:after{
+    content: none;
+}
+.progressbar li.active {
+    color: #302f83;
+    font-weight: 600;
+}
+.progressbar li.active:before  {
+    background-color: #302f83;
+    color: #fff;
+}
+.progressbar li.active:after {
+    border: 2px solid #302f83;
+}
+
+/*  */
+.confirmationPage .card{
+    padding: 120px 0px;
+}
+.confirmationPage .card .heading h1{
+    color: #302f83;
+    font-size: 68px;
+    font-weight: 500;
+    word-spacing: 9px;
+}
+.confirmationPage .card .line{
+    border: none;
+    border-bottom: 5px solid #e20b0b;
+    height: 2px;
+    width: 15%;
+    margin-bottom: 25px;
+}
+
+.confirmationPage .card .paragraph{
+    font-size: 30px;
+    color: #302f83;
+}
+
+#heading{
+    font-size: 41px;
+    font-weight: lighter;
+    color: #302f83;
+}
+.paragraph p{
+    font-size: 23px;
+    font-weight: 100;
+}
+
+#image{
+    margin-top: -120px;
+}
+#right{
+    float: right;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 768px) {
+    .PersonalInfo {
+      width: 100%;
+      text-align: center;
+    }
+    .progressbar{
+      width: 100%;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .progressbar span{
+        display: none;
+    }
+  }
